@@ -1,0 +1,58 @@
+# Virtual environments
+.venv/
+venv/
+backend/venv/
+env/
+ENV/
+
+# Python caches and testing
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+*.egg-info/
+dist/
+build/
+
+# Node / Next.js
+node_modules/
+frontend/node_modules/
+frontend/.next/
+.next/
+out/
+build/
+*.tsbuildinfo
+next-env.d.ts
+
+# Databases & local generated state
+*.db
+*.sqlite3
+debate.db
+test_debate.db
+backend/debate.db
+backend/test_debate.db
+
+# Uploads & local Vector Store indexes
+uploads/
+backend/uploads/
+vector_db/
+backend/vector_db/
+
+# Environment and secrets
+.env
+.env.local
+.env.*.local
+*.pem
+
+# Logs & OS artifacts
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+Thumbs.db
+
+data/debate/raw_dataset.json

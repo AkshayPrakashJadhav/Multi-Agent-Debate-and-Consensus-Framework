@@ -1,0 +1,132 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg-app: #FAF9F5;
+  --color-bg-surface: #FFFFFF;
+  --color-bg-sidebar: #F4F3EE;
+  --color-bg-hover: #EFEDE4;
+  
+  --color-text-primary: #2D2A26;
+  --color-text-secondary: #6B6860;
+  --color-text-tertiary: #A8A497;
+  
+  --color-border-subtle: #E8E6DD;
+  --color-border-default: #DDDACE;
+  
+  --color-accent: #C15F3C;
+  --color-accent-hover: #A94F30;
+  --color-accent-soft: #F3E4DB;
+  
+  --color-success: #4A7856;
+  --color-success-soft: #E4EDE4;
+  --color-warning: #B8863C;
+  --color-warning-soft: #F5EBDA;
+  --color-danger: #B84C3E;
+  --color-danger-soft: #F5E2DE;
+}
+
+:root {
+  --bg-app: #FAF9F5;
+  --bg-surface: #FFFFFF;
+  --bg-sidebar: #F4F3EE;
+  --bg-hover: #EFEDE4;
+  --text-primary: #2D2A26;
+  --text-secondary: #6B6860;
+  --text-tertiary: #A8A497;
+  --border-subtle: #E8E6DD;
+  --border-default: #DDDACE;
+  --accent: #C15F3C;
+  --accent-hover: #A94F30;
+  --accent-soft: #F3E4DB;
+  --success: #4A7856;
+  --success-soft: #E4EDE4;
+  --warning: #B8863C;
+  --warning-soft: #F5EBDA;
+  --danger: #B84C3E;
+  --danger-soft: #F5E2DE;
+
+  /* Agent Border Accent Colors */
+  --agent-planner: #6B6860;
+  --agent-research: #4A7A8C;
+  --agent-expert: #6B5B95;
+  --agent-risk: #B8863C;
+  --agent-critic: #B84C3E;
+  --agent-devil: #C15F3C;
+  --agent-arbiter: #2D2A26;
+  --agent-verifier: #4A7856;
+
+  /* Motion Tokens */
+  --transition-panel: 150ms ease;
+  --transition-card: 200ms ease;
+}
+
+body {
+  background-color: var(--bg-app);
+  color: var(--text-primary);
+  font-family: var(--font-inter), "Inter", -apple-system, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-app);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-default);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+a:focus-visible,
+button:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+input:focus-visible {
+  outline: 2px solid rgba(193, 95, 60, 0.4);
+  outline-offset: 2px;
+}
+
+/* Semantic Badges */
+.badge-warning {
+  background-color: var(--warning-soft);
+  color: var(--warning);
+  border: 1px solid rgba(184, 134, 60, 0.2);
+  border-radius: 6px;
+  padding: 2px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+}
+
+.badge-danger {
+  background-color: var(--danger-soft);
+  color: var(--danger);
+  border: 1px solid rgba(184, 76, 62, 0.2);
+  border-radius: 6px;
+  padding: 2px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Respect OS prefers-reduced-motion setting */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-delay: 0s !important;
+    animation-duration: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0s !important;
+    scroll-behavior: auto !important;
+  }
+}

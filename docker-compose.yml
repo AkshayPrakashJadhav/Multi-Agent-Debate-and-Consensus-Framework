@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    container_name: debate-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - backend-uploads:/app/uploads
+      - backend-vector:/app/vector_db
+    environment:
+      - DATABASE_URL=sqlite:///./uploads/debate.db
+      - SECRET_KEY=prodsecretkeychangeinproduction1234567890!
+      - UPLOAD_DIR=uploads
+      - VECTOR_DB_DIR=vector_db
+    restart: always
+
+  frontend:
+    build: ./frontend
+    container_name: debate-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:8000/api/v1
+    depends_on:
+      - backend
+    restart: always
+
+volumes:
+  backend-uploads:
+  backend-vector:
