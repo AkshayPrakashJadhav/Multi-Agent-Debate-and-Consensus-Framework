@@ -4,9 +4,6 @@ A production-grade, research-caliber AI systems platform designed to improve LLM
 
 It implements an iterative **multi-agent state graph debate loop** using specialized LLM personas (Planner, Research Agent, Domain Expert, Risk Analyst, Critical Reviewer, Arbiter, and Verification Agent) evaluated systematically against single-agent and voting baselines on domain-specific benchmarks.
 
-> 🚀 **Live Interactive Prototype**: [Experience the Framework on GitHub Pages](https://akshayprakashjadhav.github.io/Multi-Agent-Debate-and-Consensus-Framework/)  
-> *(Run live simulated multi-agent debate loops across Healthcare, Finance, Legal, and Tech with zero backend installation)*
-
 ---
 
 ## 📑 Table of Contents
@@ -246,8 +243,6 @@ erDiagram
 ├── scripts/
 │   ├── download_debate.py          # Script to download benchmark from Hugging Face
 │   └── prepare_debate_dataset.py   # Script to normalize, tokenize & split benchmark records
-├── docs/
-│   └── index.html                  # Interactive GitHub Pages research prototype showcase
 ├── docker-compose.yml              # Multi-container service orchestrator
 └── README.md                       # Comprehensive platform documentation
 ```
