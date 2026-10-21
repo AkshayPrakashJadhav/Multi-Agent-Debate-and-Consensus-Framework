@@ -69,46 +69,8 @@ graph TD
 
 ## 🔄 Execution Sequence Diagram
 
-sequenceDiagram
-    autonumber
-    actor User as User Client
-    participant API as FastAPI Gateway
-    participant RAG as RAG Pipeline
-    participant Orch as Debate Orchestrator
-    participant Agents as Debate Agents
-    participant Arbiter as Arbiter and Verifier
-    participant DB as SQLite and FAISS
+<img width="3820" height="2592" alt="mermaid-diagram" src="https://github.com/user-attachments/assets/0d057f8a-9a9b-499f-b105-2e1b475e567b" />
 
-    User->>API: Submit query and domain tag
-    API->>DB: Create debate session record
-
-    API->>RAG: Retrieve context chunks
-    RAG->>DB: Query dense vector embeddings
-    DB-->>RAG: Return top K candidate chunks
-    RAG->>RAG: Rerank chunks using cosine similarity
-    RAG-->>API: Return context and citations
-
-    API->>Orch: Initiate multi-agent debate
-    Orch->>Agents: Generate initial persona responses
-    Agents-->>Orch: Return responses, confidence and evidence
-
-    loop Debate rounds until consensus threshold or maximum rounds
-        Orch->>Agents: Share critiques and counterarguments
-        Agents-->>Orch: Return revised positions and cross-critiques
-    end
-
-    Orch->>Arbiter: Submit debate transcript
-    Arbiter-->>Orch: Return synthesized consensus and justification
-
-    Orch->>Arbiter: Verify claims against retrieved evidence
-    Arbiter-->>Orch: Return verification results
-
-    Orch->>Orch: Calculate confidence and agent influence
-    Orch->>DB: Persist rounds, metrics and consensus
-
-    API-->>User: Return consensus, metrics, logs and PDF export
-
----
 
 ## 🗄️ Database ER Diagram
 
