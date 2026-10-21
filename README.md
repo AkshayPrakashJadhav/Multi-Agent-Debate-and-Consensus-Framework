@@ -69,41 +69,44 @@ graph TD
 
 ## 🔄 Execution Sequence Diagram
 
-```mermaid
 sequenceDiagram
     autonumber
-    actor User as User Client (Next.js)
-    participant API as FastAPI Gateway (:8000)
+    actor User as User Client
+    participant API as FastAPI Gateway
     participant RAG as RAG Pipeline
     participant Orch as Debate Orchestrator
-    participant Agents as Debate Agents (Personas)
-    participant Arbiter as Arbiter & Verifier
-    database DB as SQLite / FAISS
+    participant Agents as Debate Agents
+    participant Arbiter as Arbiter and Verifier
+    participant DB as SQLite and FAISS
 
-    User->>API: Submit Query & Domain Tag (e.g., Healthcare, Finance, Legal)
-    API->>DB: Create Debate Session Record
-    API->>RAG: Retrieve Context Chunks
-    RAG->>DB: Query Dense Vector Embeddings (FAISS / Local)
-    DB-->>RAG: Return Top-K Candidate Chunks
-    RAG->>RAG: Rerank Chunks (Cosine Similarity)
-    RAG-->>API: Return Reranked Context + Citations
-    
-    API->>Orch: Initiate Multi-Agent Debate Loop
-    Orch->>Agents: Round 1: Generate Persona Draft Answers
-    Agents-->>Orch: Return Responses, Confidence & Evidence
-    
-    loop Debate rounds (Until Consensus >= 90% or Max Rounds)
-        Orch->>Agents: Peer Critique, Counter-Arguments & Self-Reflection
-        Agents-->>Orch: Return Revised Positions & Cross-Critiques
+    User->>API: Submit query and domain tag
+    API->>DB: Create debate session record
+
+    API->>RAG: Retrieve context chunks
+    RAG->>DB: Query dense vector embeddings
+    DB-->>RAG: Return top K candidate chunks
+    RAG->>RAG: Rerank chunks using cosine similarity
+    RAG-->>API: Return context and citations
+
+    API->>Orch: Initiate multi-agent debate
+    Orch->>Agents: Generate initial persona responses
+    Agents-->>Orch: Return responses, confidence and evidence
+
+    loop Debate rounds until consensus threshold or maximum rounds
+        Orch->>Agents: Share critiques and counterarguments
+        Agents-->>Orch: Return revised positions and cross-critiques
     end
-    
-    Orch->>Arbiter: Synthesize Turn-by-Turn Debate Transcript
-    Arbiter-->>Orch: Return Synthesized Consensus Answer & Justification
-    Orch->>Arbiter: Verify Factual Grounding against Retrieved Evidence
-    Orch->>Orch: Compute Calibrated Confidence Score & Agent Influence
-    Orch->>DB: Persist Rounds, Metrics, Agent Influence & Consensus
-    API-->>User: Return Consensus Decision, Metrics, Round Logs & PDF Export
-```
+
+    Orch->>Arbiter: Submit debate transcript
+    Arbiter-->>Orch: Return synthesized consensus and justification
+
+    Orch->>Arbiter: Verify claims against retrieved evidence
+    Arbiter-->>Orch: Return verification results
+
+    Orch->>Orch: Calculate confidence and agent influence
+    Orch->>DB: Persist rounds, metrics and consensus
+
+    API-->>User: Return consensus, metrics, logs and PDF export
 
 ---
 
